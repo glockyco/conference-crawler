@@ -6,6 +6,7 @@ authors = ["Johann Glock <johann.glocks@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+Django = "^4.0.4"
 
 [tool.poetry.dev-dependencies]
 
