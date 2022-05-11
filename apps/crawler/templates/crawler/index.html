@@ -1,7 +1,70 @@
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'crawler/style.css' %}">
+<html lang="en">
+<head>
+    <title> Website Crawler</title>
+    <link rel="stylesheet" href="{% static 'crawler/style.css' %}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1 class="Header-font">Website Crawler</h1></div>
+    <div>
+        <form method="get" action="add-conference">
+            <div class="Form-Font">
+                <label for="url"><br>Add conference URL: </label></div>
+            <div class="txt">
+                <input type="text" id="url" name="url">
+            </div>
+            <div class="action">
+                <a><input type="submit" value="Go!"></a>
+            </div>
+        </form>
+        <hr width="90%" color="#32CD32">
+        <div>
+            <h2 class="info">Information about the requested conference can be found below: </h2>
+        </div>
+        <div>
+            <table class="tbl">
+                <thead>
+                <tr class="tbltr">
+                    <th>long-title</th>
+                    <th>short-title</th>
+                    <th>year</th>
+                    <th>from</th>
+                    <th>to</th>
+                    <th>abstract-due</th>
+                    <th>submission-due</th>
+                    <th>location</th>
+                    <th>url</th>
+                    <th>call-for-papers</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if conferences %}
+                    {% for conference in conferences %}
+                        <tr>
+                            <td>{{ conference.long_title }}</td>
+                            <td>{{ conference.short_title }}</td>
+                            <td>{{ conference.year }}</td>
+                            <td>{{ conference.from_date | date:"Y-m-d" }}</td>
+                            <td>{{ conference.to_date | date:"Y-m-d" }}</td>
+                            <td>{{ conference.abstract_due | date:"Y-m-d" }}</td>
+                            <td>{{ conference.submission_due | date:"Y-m-d" }}</td>
+                            <td>{{ conference.location }}</td>
+                            <td>{{ conference.url }}</td>
+                            <td>{# conference.call_for_papers #}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
 
-<h1>Conferences</h1>
+        </div>
+    </div>
 
-Hello, world. You're at the conference-crawler index.
+
+</header>
+
+</body>
+</html>
