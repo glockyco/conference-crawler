@@ -35,6 +35,7 @@
                     <th>Location</th>
                     <th>Conference Website</th>
                     <th>ICS Download</th>
+                    <th>Re-crawl</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,6 +53,7 @@
                             <td>{{ conference.location }}</td>
                             <td><a href="{{ conference.url }}" target="_blank">Link</a></td>
                             <td><a href="/ical/?file={{ conference.file_name }}">Download</a></td>
+                            <td><a href="/crawl/?url={{ conference.url }}">Crawl</a></td>
                         </tr>
                     {% endfor %}
                 {% endif %}
@@ -60,6 +62,7 @@
         </div>
         <div>
             <h2 class="info"><a href="/ical/">Download ICS for all conferences.</a></h2>
+            <h2 class="info"><a href="/crawl/">Re-crawl all conferences.</a></h2>
         </div>
     </div>
 </header>

@@ -106,7 +106,7 @@ class ConferenceSpider(scrapy.Spider):
         conference["important_dates"] = important_dates
 
         # url
-        conference["url"] = response.css(".footer h3 a").xpath("@href").get()
+        conference["url"] = response.url
 
         # call-for-papers
         cfp_html = response.css("#Call-for-Papers").get()
@@ -115,10 +115,6 @@ class ConferenceSpider(scrapy.Spider):
         conference["call_for_papers"] = None if cfp_html is None else markdownify(cfp_html, heading_style="ATX")
 
         yield conference
-
-
-# poetry run apps/manage.py runserver
-# poetry run scrapy runspider apps/crawler/crawler.py -o conferences.json
 
 
 class CrawlerRunnerProcess(Process):
@@ -150,6 +146,10 @@ def crawl(urls: List[str]):
     crawler = CrawlerRunnerProcess(ConferenceSpider, urls=urls)
     crawler.start()
     crawler.join()
+
+
+# poetry run apps/manage.py runserver
+# poetry run scrapy runspider apps/crawler/crawler.py -o conferences.json
 
 
 if __name__ == "__main__":

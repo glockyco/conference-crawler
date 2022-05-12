@@ -41,8 +41,20 @@ def index(request: WSGIRequest):
 
 
 def add_conference(request: WSGIRequest):
-    url = request.GET.get("url")
-    crawl([url])
+    url: str = request.GET.get("url")
+
+    urls = []
+    if url is None:
+        json_paths = glob.glob(os.path.join(DATA_PATH, "*.json"))
+        for json_path in json_paths:
+            with open(os.path.join(json_path)) as json_file:
+                conference: Conference = json.load(json_file)
+                urls.append(conference["url"])
+    else:
+        urls.append(url)
+
+    crawl(urls)
+
     return redirect("index")
 
 
