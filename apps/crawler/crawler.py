@@ -70,7 +70,12 @@ class ConferenceSpider(scrapy.Spider):
         conference["year"] = int(short_title_text.split(" ")[1])
 
         # location
-        conference["location"] = response.css(".place a").xpath("text()").get()
+        location = response.css(".place a").xpath("text()").get()
+        if location is None:
+            location_text: str = response.css(".navbar-nav .navigate")[0].xpath("text()").get()
+            if ": " in location_text:
+                location = location_text.split(": ")[1]
+        conference["location"] = location
 
         # from / to / year
         from_to_str: str = response.css(".place").xpath("text()").get()
