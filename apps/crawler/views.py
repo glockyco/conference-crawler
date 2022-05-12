@@ -2,6 +2,7 @@ import glob
 import json
 import os
 
+import markdown
 from dateutil import parser
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import HttpResponse, redirect
@@ -37,6 +38,24 @@ def index(request: WSGIRequest):
     context = {'conferences': conferences}
 
     template = loader.get_template('crawler/index.html')
+    return HttpResponse(template.render(context, request))
+
+
+def details(request: WSGIRequest):
+    file = request.GET.get("file")
+
+    json_path = os.path.join(DATA_PATH, file)
+    with open(os.path.join(json_path)) as json_file:
+        data = json.load(json_file)
+
+        data['file_name'] = os.path.basename(json_path)
+
+        data['from_date'] = parser.isoparse(data['from_date'])
+        data['to_date'] = parser.isoparse(data['to_date'])
+        data['call_for_papers'] = markdown.markdown(data['call_for_papers'])
+
+    context = data
+    template = loader.get_template('crawler/details.html')
     return HttpResponse(template.render(context, request))
 
 

@@ -20,6 +20,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('details/', views.details, name='details'),
     path('crawl/', views.add_conference, name='crawl'),
     path('ical/', views.ical, name='ical'),
     path('admin/', admin.site.urls),

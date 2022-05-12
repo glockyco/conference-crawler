@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+     <link rel="stylesheet" href="{% static 'crawler/style.css' %}">
+</head>
+<body>
+<header>
+     <div class="container">
+        <center><h1>Website Crawler</h1></center></div>
+    <div>
+         <hr width="90%" color="#32CD32">
+         <div><a href="/"> Back to the Main page</a> </div>
+        <br>
+<table  class="tbl">
+    <thead>
+                <tr class="tbltr">
+                    <th class=" thclass">Conference title</th>
+                    <th class=" thclass">Short Title</th>
+                    <th class=" thclass">Year</th>
+                    <th class=" thclass">From</th>
+                    <th class=" thclass">To</th>
+                    <th class=" thclass">Abstract Due</th>
+                    <th class=" thclass">Submission Due</th>
+                    <th class=" thclass">Location</th>
+                    <th class=" thclass">url</th>
+                </tr>
+                </thead>
+    <thead>
+    <tr class="tbltr" >
+                            <th width="30%" class=" thclass"> {{ long_title }}</th>
+                            <th width="4%" class=" thclass">{{ short_title }}</th>
+                            <th width="4%" class=" thclass">{{ year }}</th>
+                            <th width="10%" class=" thclass">{{ from_date | date:"Y-m-d" }}</th>
+                            <th width="10%" class=" thclass">{{ to_date | date:"Y-m-d"  }}</th>
+                            <th width="10%" class=" thclass">{{ abstract_due | date:"Y-m-d" }}</th>
+                            <th width="10%" class=" thclass">{{ submission_due | date:"Y-m-d" }}</th>
+                            <th width="10%" class=" thclass">{{ location }}</th>
+                            <th width="12%" class=" thclass">{{ url }}</th>
+       </tr>
+    <tr class="tbltr"> <th width="30%" colspan="9">{{ call_for_papers | safe }}</th>
+    </tr>
+    </thead>
+    </table>
+</header>
+</body>
+</html>

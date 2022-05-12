@@ -88,3 +88,24 @@ table, th, td {
 tr {
     height: 40px
 }
+#mycheckbox:checked ~ .moretext {
+  display: block;
+}
+
+.moretext{
+  display: none;
+}
+
+#mycheckbox{
+  display: none;
+}
+.showmore{
+  cursor: pointer;
+}
+
+th {
+  text-align: justify;
+    line-height: 2;
+}
+
+.thclass{ text-align: center}
