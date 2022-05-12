@@ -22,15 +22,18 @@ def index(request: WSGIRequest):
 
             data['from_date'] = parser.isoparse(data['from_date'])
             data['to_date'] = parser.isoparse(data['to_date'])
-            #data['abstract_due'] = parser.isoparse(data['abstract_due'])
-            #data['submission_due'] = parser.isoparse(data['submission_due'])
+
+            if 'important_dates' in data:
+                for i, date in enumerate(data['important_dates']):
+                    data['important_dates'][i]['date'] = parser.isoparse(date['date'])
 
             conferences.append(data)
 
-    template = loader.get_template('crawler/index.html')
+    conferences.sort(key=lambda c: c['short_title'])
 
     context = {'conferences': conferences}
 
+    template = loader.get_template('crawler/index.html')
     return HttpResponse(template.render(context, request))
 
 

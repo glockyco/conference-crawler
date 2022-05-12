@@ -28,16 +28,15 @@
             <table class="tbl">
                 <thead>
                 <tr class="tbltr">
-                    <th>long-title</th>
-                    <th>short-title</th>
-                    <th>year</th>
-                    <th>from</th>
-                    <th>to</th>
-                    <th>abstract-due</th>
-                    <th>submission-due</th>
-                    <th>location</th>
-                    <th>url</th>
-                    <th>call-for-papers</th>
+                    <th>Long Title</th>
+                    <th>Short Title</th>
+                    <th>Year</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Important Dates</th>
+                    <th>Location</th>
+                    <th>URL</th>
+                    <th>Call for Papers</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,8 +48,11 @@
                             <td>{{ conference.year }}</td>
                             <td>{{ conference.from_date | date:"Y-m-d" }}</td>
                             <td>{{ conference.to_date | date:"Y-m-d" }}</td>
-                            <td>{{ conference.abstract_due | date:"Y-m-d" }}</td>
-                            <td>{{ conference.submission_due | date:"Y-m-d" }}</td>
+                            <td>
+                                {% for date in conference.important_dates %}
+                                    {{ date.date | date:"Y-m-d" }}: {{ date.description }}<br/>
+                                {% endfor %}
+                            </td>
                             <td>{{ conference.location }}</td>
                             <td>{{ conference.url }}</td>
                             <td>{# conference.call_for_papers #}</td>

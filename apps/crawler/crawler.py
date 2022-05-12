@@ -2,7 +2,7 @@ import json
 import os
 from datetime import datetime, date
 from multiprocessing import Process
-from typing import TypedDict, List
+from typing import TypedDict, List, Dict
 
 import dateutil
 import scrapy
@@ -27,6 +27,7 @@ class Conference(TypedDict):
     year: int
     url: str
     call_for_papers: str
+    important_dates: List[Dict[str, str]]
 
 
 class ConferenceExporter(BaseItemExporter):
@@ -101,8 +102,8 @@ class ConferenceSpider(scrapy.Spider):
 
             important_dates.append({"date": date, "description": description})
 
-        # @TODO: Include important dates.
-        #yield {"important_dates": important_dates}
+        important_dates.sort(key=lambda d: d["date"])
+        conference["important_dates"] = important_dates
 
         # url
         conference["url"] = response.css(".footer h3 a").xpath("@href").get()
