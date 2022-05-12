@@ -28,24 +28,20 @@
             <table class="tbl">
                 <thead>
                 <tr class="tbltr">
-                    <th>Long Title</th>
-                    <th>Short Title</th>
-                    <th>Year</th>
+                    <th>Title</th>
                     <th>From</th>
                     <th>To</th>
                     <th>Important Dates</th>
                     <th>Location</th>
-                    <th>URL</th>
-                    <th>Call for Papers</th>
+                    <th>Conference Website</th>
+                    <th>ICS Download</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% if conferences %}
                     {% for conference in conferences %}
                         <tr>
-                            <td>{{ conference.long_title }}</td>
                             <td>{{ conference.short_title }}</td>
-                            <td>{{ conference.year }}</td>
                             <td>{{ conference.from_date | date:"Y-m-d" }}</td>
                             <td>{{ conference.to_date | date:"Y-m-d" }}</td>
                             <td>
@@ -54,19 +50,18 @@
                                 {% endfor %}
                             </td>
                             <td>{{ conference.location }}</td>
-                            <td>{{ conference.url }}</td>
-                            <td>{# conference.call_for_papers #}</td>
+                            <td><a href="{{ conference.url }}" target="_blank">Link</a></td>
+                            <td><a href="/ical/?file={{ conference.file_name }}">Download</a></td>
                         </tr>
                     {% endfor %}
                 {% endif %}
                 </tbody>
             </table>
-
+        </div>
+        <div>
+            <h2 class="info"><a href="/ical/">Download ICS for all conferences.</a></h2>
         </div>
     </div>
-
-
 </header>
-
 </body>
 </html>

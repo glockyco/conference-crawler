@@ -21,5 +21,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('add-conference/', views.add_conference, name='add-conference'),
+    path('ical/', views.ical, name='ical'),
     path('admin/', admin.site.urls),
 ]
