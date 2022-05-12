@@ -4,47 +4,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Details</title>
-     <link rel="stylesheet" href="{% static 'crawler/style.css' %}">
+    <title>Conference Crawler</title>
+    <link rel="stylesheet" href="{% static 'crawler/style.css' %}">
 </head>
 <body>
 <header>
-     <div class="container">
-        <center><h1>Website Crawler</h1></center></div>
+    <div class="container">
+        <center><h1>Conference Crawler</h1></center>
+    </div>
     <div>
-         <hr width="90%" color="#32CD32">
-         <div><a href="/"> Back to the Main page</a> </div>
+        <hr width="90%" color="#32CD32">
+        <div><a href="/">Back to the main page</a></div>
         <br>
-<table  class="tbl">
-    <thead>
-                <tr class="tbltr">
-                    <th class=" thclass">Conference title</th>
-                    <th class=" thclass">Short Title</th>
-                    <th class=" thclass">Year</th>
-                    <th class=" thclass">From</th>
-                    <th class=" thclass">To</th>
-                    <th class=" thclass">Abstract Due</th>
-                    <th class=" thclass">Submission Due</th>
-                    <th class=" thclass">Location</th>
-                    <th class=" thclass">url</th>
-                </tr>
-                </thead>
-    <thead>
-    <tr class="tbltr" >
-                            <th width="30%" class=" thclass"> {{ long_title }}</th>
-                            <th width="4%" class=" thclass">{{ short_title }}</th>
-                            <th width="4%" class=" thclass">{{ year }}</th>
-                            <th width="10%" class=" thclass">{{ from_date | date:"Y-m-d" }}</th>
-                            <th width="10%" class=" thclass">{{ to_date | date:"Y-m-d"  }}</th>
-                            <th width="10%" class=" thclass">{{ abstract_due | date:"Y-m-d" }}</th>
-                            <th width="10%" class=" thclass">{{ submission_due | date:"Y-m-d" }}</th>
-                            <th width="10%" class=" thclass">{{ location }}</th>
-                            <th width="12%" class=" thclass">{{ url }}</th>
-       </tr>
-    <tr class="tbltr"> <th width="30%" colspan="9">{{ call_for_papers | safe }}</th>
-    </tr>
-    </thead>
-    </table>
+        <table class="tbl">
+            <thead>
+            <tr class="tbltr">
+                <th>Title</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Important Dates</th>
+                <th>Location</th>
+                <th>Conference Website</th>
+                <th>ICS Download</th>
+                <th>Re-crawl</th>
+            </tr>
+            </thead>
+            <thead>
+            <tr class="tbltr">
+                <td>{{ conference.short_title }}</td>
+                <td>{{ conference.from_date | date:"Y-m-d" }}</td>
+                <td>{{ conference.to_date | date:"Y-m-d" }}</td>
+                <td>
+                    {% for date in conference.important_dates %}
+                        {{ date.date | date:"Y-m-d" }}: {{ date.description }}<br/>
+                    {% endfor %}
+                </td>
+                <td>{{ conference.location }}</td>
+                <td><a href="{{ conference.url }}" target="_blank">Link</a></td>
+                <td><a href="/ical/?file={{ conference.file_name }}">Download</a></td>
+                <td><a href="/crawl/?url={{ conference.url }}">Crawl</a></td>
+            </tr>
+            <tr class="tbltr">
+                <th width="30%" colspan="9">{{ conference.call_for_papers | safe }}</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
 </header>
 </body>
 </html>

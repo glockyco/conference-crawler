@@ -16,6 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 APP_PATH = os.path.realpath(os.path.dirname(__file__))
+DATA_PATH = os.path.join(APP_PATH, 'data')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/

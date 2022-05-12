@@ -13,9 +13,7 @@ from scrapy.exporters import BaseItemExporter
 from scrapy.http import HtmlResponse
 from twisted.internet import reactor
 
-
-APP_PATH = os.path.realpath(os.path.dirname(__file__))
-DATA_PATH = os.path.join(APP_PATH, 'data')
+from apps.crawler.settings import DATA_PATH
 
 
 class Conference(TypedDict):

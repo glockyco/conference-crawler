@@ -9,10 +9,7 @@ from django.shortcuts import HttpResponse, redirect
 from django.template import loader
 from ics import Calendar, Event
 
-from apps.crawler.crawler import crawl, Conference
-
-APP_PATH = os.path.realpath(os.path.dirname(__file__))
-DATA_PATH = os.path.join(APP_PATH, 'data')
+from apps.crawler.crawler import crawl, Conference, DATA_PATH
 
 
 def index(request: WSGIRequest):
@@ -54,7 +51,10 @@ def details(request: WSGIRequest):
         data['to_date'] = parser.isoparse(data['to_date'])
         data['call_for_papers'] = markdown.markdown(data['call_for_papers'])
 
-    context = data
+        for i, date in enumerate(data['important_dates']):
+            data['important_dates'][i]['date'] = parser.isoparse(date['date'])
+
+    context = {'conference': data}
     template = loader.get_template('crawler/details.html')
     return HttpResponse(template.render(context, request))
 
@@ -118,7 +118,3 @@ def ical(request: WSGIRequest):
     response.write(str(calendar))
 
     return response
-
-
-if __name__ == '__main__':
-    index(None)

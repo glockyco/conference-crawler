@@ -1,17 +1,20 @@
 {% load static %}
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title> Website Crawler</title>
+    <meta charset="UTF-8">
+    <title>Conference Crawler</title>
     <link rel="stylesheet" href="{% static 'crawler/style.css' %}">
 </head>
 <body>
 <header>
     <div class="container">
-        <h1 class="Header-font">Website Crawler</h1></div>
+        <center><h1>Conference Crawler</h1></center>
+    </div>
     <div>
-        <form method="get" action="add-conference">
-            <div class="Form-Font">
+        <form method="get" action="crawl">
+            <div class="form-font">
                 <label for="url"><br>Add conference URL: </label></div>
             <div class="txt">
                 <input type="text" id="url" name="url">
