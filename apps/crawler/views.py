@@ -7,7 +7,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import HttpResponse, redirect
 from django.template import loader
 
-#from apps.crawler.crawler import crawl
+from apps.crawler.crawler import crawl
 
 APP_PATH = os.path.realpath(os.path.dirname(__file__))
 DATA_PATH = os.path.join(APP_PATH, 'data')
@@ -36,7 +36,7 @@ def index(request: WSGIRequest):
 
 def add_conference(request: WSGIRequest):
     url = request.GET.get("url")
-    #crawl([url])
+    crawl([url])
     return redirect("index")
 
 
