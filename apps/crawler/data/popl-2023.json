@@ -3,8 +3,8 @@
     "short_title": "POPL",
     "year": 2023,
     "location": null,
-    "from_date": "2023-05-15T00:00:00",
     "to_date": "2023-01-21T00:00:00",
+    "from_date": "2023-01-15T00:00:00",
     "important_dates": [
         {
             "date": "2022-07-07T00:00:00",

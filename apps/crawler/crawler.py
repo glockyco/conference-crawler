@@ -79,8 +79,8 @@ class ConferenceSpider(scrapy.Spider):
         from_str = from_to_str.split("-")[0]
         to_str = from_to_str.split("-")[1]
 
-        conference["from_date"] = dateutil.parser.parse(from_str).replace(year=conference["year"])
         conference["to_date"] = dateutil.parser.parse(to_str)
+        conference["from_date"] = dateutil.parser.parse(from_str, default=conference["to_date"])
 
         # abstract-due / submission-due
         important_dates = []
@@ -194,4 +194,3 @@ if __name__ == "__main__":
     ]
 
     crawl(start_urls)
-

@@ -3,8 +3,8 @@
     "short_title": "MSR",
     "year": 2022,
     "location": null,
-    "from_date": "2022-05-23T00:00:00",
     "to_date": "2022-05-24T00:00:00",
+    "from_date": "2022-05-23T00:00:00",
     "important_dates": [
         {
             "date": "2022-01-17T00:00:00",

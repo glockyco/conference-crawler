@@ -3,8 +3,8 @@
     "short_title": "ASE",
     "year": 2022,
     "location": "Ann Arbor, Michigan, United States",
-    "from_date": "2022-05-10T00:00:00",
     "to_date": "2022-10-14T00:00:00",
+    "from_date": "2022-10-10T00:00:00",
     "important_dates": [
         {
             "date": "2022-04-29T00:00:00",
